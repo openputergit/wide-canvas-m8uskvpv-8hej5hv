@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VenueShare - P2P Property Rental Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body class="p-4">
+    <!-- Navigation -->
+    <nav class="glass-card p-4 mb-8">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-white">VenueShare</h1>
+            <div class="flex space-x-4">
+                <button class="text-white hover:text-gray-200"><i class="bi bi-search"></i></button>
+                <button class="text-white hover:text-gray-200"><i class="bi bi-person-circle"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto">
+        <!-- Filters -->
+        <div class="glass-card p-4 mb-8">
+            <div class="flex flex-wrap gap-4">
+                <select class="bg-transparent text-white border border-white rounded-lg p-2">
+                    <option value="">Property Type</option>
+                    <option value="house">House</option>
+                    <option value="hall">Hall</option>
+                    <option value="garden">Garden</option>
+                </select>
+                <input type="date" class="bg-transparent text-white border border-white rounded-lg p-2">
+                <input type="text" placeholder="Location" class="bg-transparent text-white border border-white rounded-lg p-2">
+                <button class="bg-white text-indigo-600 px-6 py-2 rounded-lg hover:bg-opacity-90">Search</button>
+            </div>
+        </div>
+
+        <!-- Property Listings -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Property Card Template -->
+            <div class="glass-card p-4">
+                <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811" alt="Luxury Villa" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-white text-xl font-semibold mb-2">Luxury Villa with Pool</h3>
+                <p class="text-white opacity-80 mb-4">Perfect for events up to 100 guests</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-white text-xl">$1000/day</span>
+                    <button class="bg-white text-indigo-600 px-4 py-2 rounded-lg hover:bg-opacity-90">Book Now</button>
+                </div>
+            </div>
+            <!-- More property cards... -->
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="glass-card p-6 max-w-md w-full mx-4">
+            <h2 class="text-white text-2xl font-bold mb-4">Book Venue</h2>
+            <form id="bookingForm" class="space-y-4">
+                <input type="text" placeholder="Full Name" class="w-full bg-transparent text-white border border-white rounded-lg p-2">
+                <input type="email" placeholder="Email" class="w-full bg-transparent text-white border border-white rounded-lg p-2">
+                <input type="tel" placeholder="Phone" class="w-full bg-transparent text-white border border-white rounded-lg p-2">
+                <textarea placeholder="Event Details" class="w-full bg-transparent text-white border border-white rounded-lg p-2"></textarea>
+                <div class="flex justify-end gap-4">
+                    <button type="button" class="text-white border border-white px-4 py-2 rounded-lg" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="bg-white text-indigo-600 px-4 py-2 rounded-lg hover:bg-opacity-90">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        function openModal() {
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        // Add event listeners to all "Book Now" buttons
+        document.querySelectorAll('button').forEach(button => {
+            if(button.textContent === 'Book Now') {
+                button.addEventListener('click', openModal);
+            }
+        });
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Booking request submitted! We will contact you shortly.');
+            closeModal();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('bookingModal').addEventListener('click', (e) => {
+            if(e.target === document.getElementById('bookingModal')) {
+                closeModal();
+            }
+        });
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
